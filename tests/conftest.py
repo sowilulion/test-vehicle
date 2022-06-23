@@ -2,37 +2,17 @@ from settings import Settings
 from library import Library
 import pytest
 
-
 set_lib = Settings()
 api_lib = Library()
 stand_address = set_lib.get_host() + ':' + set_lib.get_port()
-# print(api_lib.get_all_pins(stand_address).json())
-# print(api_lib.get_gear1_pin(stand_address).json())
-# print(api_lib.get_gear2_pin(stand_address).json())
-# print(api_lib.get_acc_pedal_pin(stand_address).json())
-# print(api_lib.get_brake_pedal_pin(stand_address).json())
-# print(api_lib.get_battery_voltage_pin(stand_address).json())
-# print(api_lib.set_gear1_pin(stand_address, 1))
-# print(api_lib.set_gear2_pin(stand_address, 2))
-# print(api_lib.set_acc_pedal_pin(stand_address, 3))
-# print(api_lib.set_brake_pedal_pin(stand_address, 4))
-# print(api_lib.set_battery_voltage_pin(stand_address, 5))
-# print(api_lib.set_all_pins(address=stand_address,
-#                            gear1_value=1,
-#                            gear2_value=2,
-#                            acc_pedal_value=1,
-#                            brake_pedal_value=1,
-#                            battery_voltage_value=1).content)
-# print(api_lib.get_all_pins(stand_address).json())
-# print(api_lib.get_all_signals(stand_address).json())
-# print(api_lib.get_gear_position_signal(stand_address).json())
-# print(api_lib.get_acc_pedal_pos_signal(stand_address).json())
-# print(api_lib.get_brake_pedal_state_signal(stand_address).json())
-# print(api_lib.get_req_torque_signal(stand_address).json())
-# print(api_lib.get_battery_state_signal(stand_address).json())
 
 
-def change_all_pins(stand_address, start_params):
+@pytest.fixture(autouse=True)
+def clean_pins():
+    api_lib.set_battery_voltage_pin(stand_address, 0)
+
+
+def change_all_pins(start_params):
     api_lib.set_battery_voltage_pin(stand_address, 500)
     api_lib.set_brake_pedal_pin(stand_address, 1)
     api_lib.set_acc_pedal_pin(stand_address, 1)
@@ -44,7 +24,7 @@ def change_all_pins(stand_address, start_params):
     api_lib.set_acc_pedal_pin(stand_address, start_params["AccPedal"])
 
 
-def get_all_params(stand_address):
+def get_all_params():
     response_gear1_pin = api_lib.get_gear1_pin(stand_address).json()
     response_gear2_pin = api_lib.get_gear2_pin(stand_address).json()
     response_acc_pedal_pin = api_lib.get_acc_pedal_pin(stand_address).json()
@@ -68,8 +48,8 @@ def get_all_params(stand_address):
             'ReqTorque': response_req_torque_signal['Value']}
 
 
-def check_all_params(stand_address, start_params):
-    response = get_all_params(stand_address)
+def check_all_params(start_params):
+    response = get_all_params()
 
     if response['Gear_1'] != start_params['Gear_1']:
         raise Exception('PIN Gear_1 не соответствует назначенному. Тест не может быть продолжен')
@@ -91,59 +71,3 @@ def check_all_params(stand_address, start_params):
         raise Exception('Signal ReqTorque не соответствует назначенному. Тест не может быть продолжен')
     if response['BatteryState'] != start_params['BatteryState']:
         raise Exception('Signal BatteryState не соответствует назначенному. Тест не может быть продолжен')
-
-# @pytest.fixture()
-# def test_data1():
-#     return {'BatteryVoltage': 500,
-#             'BrakePedal': 2,
-#             'AccPedal': 2.5,
-#             'Gear_2': 0.67,
-#             'Gear_1': 3.12,
-#             'BatteryState': 'Ready',
-#             'BrakePedalState': 'Released',
-#             'GearPosition': 'Drive',
-#             'AccPedalPos': '50 %',
-#             'ReqTorque': '5000 Nm'}
-
-
-# @pytest.fixture()
-# def clean_pins():
-#     api_lib.set_battery_voltage_pin(stand_address, 0)
-#
-#     yield
-#
-#     print('Test end')
-
-
-# @pytest.fixture()
-# def test_result1():
-#     return {'BatteryVoltage': 500,
-#             'BrakePedal': 2,
-#             'AccPedal': 1,
-#             'Gear_2': 0.67,
-#             'Gear_1': 3.12,
-#             'BatteryState': 'Ready',
-#             'BrakePedalState': 'Released',
-#             'GearPosition': 'Drive',
-#             'AccPedalPos': '0 %',
-#             'ReqTorque': '0 Nm'}
-
-
-# def test_first(clean_pins, test_data1, test_result1):
-#     change_all_pins(stand_address=stand_address, start_params=test_data1)
-#     check_all_params(stand_address=stand_address, start_params=test_data1)
-#     api_lib.set_acc_pedal_pin(stand_address, 1)
-#     response = get_all_params(stand_address)
-#
-#     assert test_result1 == response
-#
-#
-# def test_first2(clean_pins, test_data1, test_result1):
-#     change_all_pins(stand_address=stand_address, start_params=test_data1)
-#     check_all_params(stand_address=stand_address, start_params=test_data1)
-#     api_lib.set_acc_pedal_pin(stand_address, 1)
-#     response = get_all_params(stand_address)
-#
-#     assert test_result1 == response
-
-# pytest -s -v tests
