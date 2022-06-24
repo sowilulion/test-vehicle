@@ -12,3 +12,7 @@ py -m pytest -v
 
 Запуск тестов по категориям с подробным логом
 py -m pytest -v -m GearPositionNeutral -vv
+
+Запуск тестов с формированием Allure отчёта. Если в Chrome не откроется, можно открыть в FireFox или Edge
+py -m pytest -vv --alluredir=allure-results
+allure serve allure-results
