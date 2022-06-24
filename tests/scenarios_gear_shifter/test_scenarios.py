@@ -83,8 +83,8 @@ class TestRun:
 
     @pytest.mark.GearPositionNeutral
     @pytest.mark.skip(
-        reason='BUG-4. GearPosition = Park. При переходе BrakePedalState в Error, GearPosition не переходит в Neutral. '
-               'Хотя должен согласно спецификации')
+         reason='BUG-3. GearPosition = Park. При переходе BrakePedalState в Error, GearPosition не переходит в Neutral.'
+                'Хотя должен согласно спецификации')
     def test_08(self, test_data_08, test_result_08):
         """Negative. GearPosition Neutral => Drive.
         If BrakePedalState == Error"""

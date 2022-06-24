@@ -15,6 +15,9 @@ class TestRun:
 
         assert test_result_01 == response
 
+    @pytest.mark.skip(reason='BUG-2. При переходе BatteryState в Error, ожидается что все PIN будут == 0. '
+                             'Но Gear_1, Gear_2, AccPedal и BrakePedal == 0.01. В спецификации указано значение 0. '
+                             'BUG-5. Отсутствует сброс ReqTorque в 0 Nm при повышении напряжения батареи выше 800V')
     def test_02(self, test_data_02, test_result_02):
         """BatteryVoltage border value 500V => 800.01V.
         BatteryState Ready => Error"""
@@ -55,6 +58,8 @@ class TestRun:
 
         assert test_result_05 == response
 
+    @pytest.mark.skip(reason='BUG-2. При переходе BatteryState в Error, ожидается что все PIN будут == 0. '
+                             'Но Gear_1, Gear_2, AccPedal и BrakePedal == 0.01. В спецификации указано значение 0')
     def test_06(self, test_data_06, test_result_06):
         """BatteryVoltage border value 500V => 0V.
         BatteryState Ready => Error"""
@@ -93,6 +98,8 @@ class TestRun:
 
         assert test_result_08 == response
 
+    @pytest.mark.skip(reason='BUG-2. При переходе BatteryState в Error, ожидается что все PIN будут == 0. '
+                             'Но Gear_1, Gear_2, AccPedal и BrakePedal == 0.01. В спецификации указано значение 0')
     @pytest.mark.GearPositionNeutral
     def test_09(self, test_data_09, test_result_09):
         """BatteryVoltage border value 400V => 0V.

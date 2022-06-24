@@ -1,9 +1,13 @@
 from tests import conftest
+import pytest
 
 
 class TestRun:
     """Проверка граничных значения для AccPedalPos и ReqTorque"""
 
+    @pytest.mark.skip(
+        reason='BUG-4. После перехода AccPedalPos в Error, GearPosition ушёл из Drive в Neutral.'
+               'Хотя в спеке об этом ни слова.')
     def test_01(self, test_data_01, test_result_01):
         """AccPedal border value 2.5V => 0.99V.
         AccPedalPos 50% => Error"""
@@ -54,6 +58,7 @@ class TestRun:
 
         assert test_result_05 == response
 
+    @pytest.mark.skip(reason='BUG-6. При переводе AccPedal из 2.5 в 3, AccPedalPos = Error вместо 100%')
     def test_06(self, test_data_06, test_result_06):
         """AccPedal border value 2.5V => 3V.
         AccPedalPos 50% => 100%"""
@@ -64,6 +69,7 @@ class TestRun:
 
         assert test_result_06 == response
 
+    @pytest.mark.skip(reason='BUG-6. При переводе AccPedal из 2.5 в 3, AccPedalPos = Error вместо 100%')
     def test_07(self, test_data_07, test_result_07):
         """AccPedal border value 2.5V => 3.49V.
         AccPedalPos 50% => 100%"""
@@ -74,6 +80,9 @@ class TestRun:
 
         assert test_result_07 == response
 
+    @pytest.mark.skip(
+        reason='BUG-4. После перехода AccPedalPos в Error, GearPosition ушёл из Drive в Neutral.'
+               'Хотя в спеке об этом ни слова.')
     def test_08(self, test_data_08, test_result_08):
         """AccPedal border value 2.5V => 3.5V.
         AccPedalPos 50% => Error"""

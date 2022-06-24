@@ -132,5 +132,6 @@ def test_result_09():
 
 @pytest.fixture()
 def test_result_10():
-    return {'BatteryVoltage': 400.01, 'BrakePedal': 0, 'AccPedal': 0, 'Gear_2': 0, 'Gear_1': 0, 'BatteryState': 'Ready',
-            'BrakePedalState': 'Error', 'GearPosition': 'Neutral', 'AccPedalPos': 'Error', 'ReqTorque': '0 Nm'}
+    return {'BatteryVoltage': 400.01, 'BrakePedal': 2, 'AccPedal': 2.5, 'Gear_2': 0.67, 'Gear_1': 3.12,
+            'BatteryState': 'Ready', 'BrakePedalState': 'Released', 'GearPosition': 'Neutral', 'AccPedalPos': '50 %',
+            'ReqTorque': '0 Nm'}

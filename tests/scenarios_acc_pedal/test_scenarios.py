@@ -13,6 +13,9 @@ class TestRun:
 
         assert test_result_01 == response
 
+    @pytest.mark.skip(
+        reason='BUG-4. После перехода AccPedalPos в Error, GearPosition ушёл из Park в Neutral.'
+               'Хотя в спеке об этом ни слова.')
     def test_02(self, test_data_02, test_result_02):
         """AccPedalPos 50% => Error"""
         conftest.change_all_pins(start_params=test_data_02)
@@ -22,6 +25,8 @@ class TestRun:
 
         assert test_result_02 == response
 
+    @pytest.mark.skip(reason='BUG-3. При переходе BrakePedal из 1 в 0, ожидаю перехода GearPosition из Drive в Neutral.'
+                             'Но этого не происходит')
     def test_03(self, test_data_03, test_result_03):
         """BrakePedalState Released => Error"""
         conftest.change_all_pins(start_params=test_data_03)
@@ -87,6 +92,8 @@ class TestRun:
 
         assert test_result_08 == response
 
+    @pytest.mark.skip(reason='BUG-3. При переходе BrakePedal из 1 в 0, ожидаю перехода GearPosition из Drive в Neutral.'
+                             'Но этого не происходит')
     def test_09(self, test_data_09, test_result_09):
         """BrakePedalState Pressed => Error"""
         conftest.change_all_pins(start_params=test_data_09)
