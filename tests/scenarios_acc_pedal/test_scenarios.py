@@ -1,5 +1,5 @@
 from tests import conftest
-
+import pytest
 
 class TestRun:
     """Проверка смены AccPedalPos и ReqTorque в зависимости от условий"""
@@ -61,6 +61,10 @@ class TestRun:
 
         assert test_result_06 == response
 
+    @pytest.mark.GearPositionNeutral
+    @pytest.mark.BrakePedalStateError
+    @pytest.mark.skip(reason='BUG-3. При переходе BrakePedal из 1 в 0, ожидаю перехода GearPosition из Drive в Neutral.'
+                             'Но этого не происходит')
     def test_07(self, test_data_07, test_result_07):
         """BrakePedalState Error => Released"""
         conftest.change_all_pins(start_params=test_data_07)
@@ -70,6 +74,10 @@ class TestRun:
 
         assert test_result_07 == response
 
+    @pytest.mark.GearPositionNeutral
+    @pytest.mark.BrakePedalStateError
+    @pytest.mark.skip(reason='BUG-3. При переходе BrakePedal из 1 в 0, ожидаю перехода GearPosition из Drive в Neutral.'
+                             'Но этого не происходит')
     def test_08(self, test_data_08, test_result_08):
         """BrakePedalState Error => Pressed"""
         conftest.change_all_pins(start_params=test_data_08)

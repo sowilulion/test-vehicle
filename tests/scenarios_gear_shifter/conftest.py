@@ -32,7 +32,7 @@ def test_data_04():
 @pytest.fixture()
 def test_data_05():
     return {'BatteryVoltage': 400, 'BrakePedal': 1, 'AccPedal': 1, 'Gear_2': 3.12, 'Gear_1': 0.67,
-            'BatteryState': 'Not Ready', 'BrakePedalState': 'Pressed', 'GearPosition': 'Neutral', 'AccPedalPos': '0 %',
+            'BatteryState': 'NotReady', 'BrakePedalState': 'Pressed', 'GearPosition': 'Neutral', 'AccPedalPos': '0 %',
             'ReqTorque': '0 Nm'}
 
 
@@ -95,7 +95,7 @@ def test_result_04():
 @pytest.fixture()
 def test_result_05():
     return {'BatteryVoltage': 400, 'BrakePedal': 1, 'AccPedal': 2.5, 'Gear_2': 3.12, 'Gear_1': 0.67,
-            'BatteryState': 'Not Ready', 'BrakePedalState': 'Pressed', 'GearPosition': 'Neutral', 'AccPedalPos': '0 %',
+            'BatteryState': 'NotReady', 'BrakePedalState': 'Pressed', 'GearPosition': 'Neutral', 'AccPedalPos': '0 %',
             'ReqTorque': '0 Nm'}
 
 

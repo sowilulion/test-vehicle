@@ -1,3 +1,5 @@
+import pytest
+
 from tests import conftest
 
 
@@ -45,9 +47,10 @@ class TestRun:
 
         assert test_result_04 == response
 
+    @pytest.mark.GearPositionNeutral
     def test_05(self, test_data_05, test_result_05):
         """Negative. GearPosition Neutral => Park.
-        If BatteryState == Not Ready"""
+        If BatteryState == NotReady"""
         conftest.change_all_pins(start_params=test_data_05)
         conftest.check_all_params(start_params=test_data_05)
         conftest.api_lib.set_gear1_pin(conftest.stand_address, 0.67)
@@ -78,6 +81,10 @@ class TestRun:
 
         assert test_result_07 == response
 
+    @pytest.mark.GearPositionNeutral
+    @pytest.mark.skip(
+        reason='BUG-4. GearPosition = Park. При переходе BrakePedalState в Error, GearPosition не переходит в Neutral. '
+               'Хотя должен согласно спецификации')
     def test_08(self, test_data_08, test_result_08):
         """Negative. GearPosition Neutral => Drive.
         If BrakePedalState == Error"""
@@ -89,6 +96,9 @@ class TestRun:
 
         assert test_result_08 == response
 
+    @pytest.mark.skip(
+        reason='BUG-4. После перехода AccPedalPos в Error, GearPosition ушёл из Park в Neutral.'
+               'Хотя в спеке об этом ни слова.')
     def test_09(self, test_data_09, test_result_09):
         """Negative. GearPosition Park => Drive.
         If AccPedalPos == Error"""

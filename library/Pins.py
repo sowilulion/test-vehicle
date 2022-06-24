@@ -116,7 +116,4 @@ class Pins:
                                     "Voltage": battery_voltage_value}
             body["Pins"].append(battery_voltage_body)
 
-        print(json.dumps(body))
-        print(url)
-
         return requests.post(url=url, data=json.dumps(body))

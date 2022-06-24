@@ -9,7 +9,7 @@ class TestRun:
         AccPedalPos 50% => Error"""
         conftest.change_all_pins(start_params=test_data_01)
         conftest.check_all_params(start_params=test_data_01)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 0.99)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 0.99)
         response = conftest.get_all_params()
 
         assert test_result_01 == response
@@ -19,7 +19,7 @@ class TestRun:
         AccPedalPos 50% => 0%"""
         conftest.change_all_pins(start_params=test_data_02)
         conftest.check_all_params(start_params=test_data_02)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 1.99)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 1.99)
         response = conftest.get_all_params()
 
         assert test_result_02 == response
@@ -29,7 +29,7 @@ class TestRun:
         AccPedalPos 50% => 30%"""
         conftest.change_all_pins(start_params=test_data_03)
         conftest.check_all_params(start_params=test_data_03)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 2)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 2)
         response = conftest.get_all_params()
 
         assert test_result_03 == response
@@ -39,7 +39,7 @@ class TestRun:
         AccPedalPos 50% => 30%"""
         conftest.change_all_pins(start_params=test_data_04)
         conftest.check_all_params(start_params=test_data_04)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 2.49)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 2.49)
         response = conftest.get_all_params()
 
         assert test_result_04 == response
@@ -49,7 +49,7 @@ class TestRun:
         AccPedalPos 50% => 50%"""
         conftest.change_all_pins(start_params=test_data_05)
         conftest.check_all_params(start_params=test_data_05)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 2.99)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 2.99)
         response = conftest.get_all_params()
 
         assert test_result_05 == response
@@ -59,7 +59,7 @@ class TestRun:
         AccPedalPos 50% => 100%"""
         conftest.change_all_pins(start_params=test_data_06)
         conftest.check_all_params(start_params=test_data_06)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 3)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 3)
         response = conftest.get_all_params()
 
         assert test_result_06 == response
@@ -69,7 +69,7 @@ class TestRun:
         AccPedalPos 50% => 100%"""
         conftest.change_all_pins(start_params=test_data_07)
         conftest.check_all_params(start_params=test_data_07)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 3.49)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 3.49)
         response = conftest.get_all_params()
 
         assert test_result_07 == response
@@ -79,7 +79,7 @@ class TestRun:
         AccPedalPos 50% => Error"""
         conftest.change_all_pins(start_params=test_data_08)
         conftest.check_all_params(start_params=test_data_08)
-        conftest.api_lib.set_set_acc_pedal_pin(conftest.stand_address, 3.5)
+        conftest.api_lib.set_acc_pedal_pin(conftest.stand_address, 3.5)
         response = conftest.get_all_params()
 
         assert test_result_08 == response
