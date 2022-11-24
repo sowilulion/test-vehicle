@@ -16,3 +16,6 @@ py -m pytest -v -m GearPositionNeutral -vv
 Запуск тестов с формированием Allure отчёта. Если в Chrome не откроется, можно открыть в FireFox или Edge
 py -m pytest -vv --alluredir=allure-results
 allure serve allure-results
+
+Тестовое покрытие:
+https://docs.google.com/spreadsheets/d/16rfFDZWRxUc59h0tu7aLPsZcKIyCIOXz-fFWKu5qH2Y/edit#gid=0
